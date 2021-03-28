@@ -14,8 +14,9 @@ def process_order(order):
     #Your code here
     #1.Insert the order
     order_obj = Order( sender_pk=order['sender_pk'],receiver_pk=order['receiver_pk'], buy_currency=order['buy_currency'], sell_currency=order['sell_currency'], buy_amount=order['buy_amount'], sell_amount=order['sell_amount'] )
-   
-    
+    session.add(order_obj)
+    session.commit()
+
     #2.Check if there are any existing orders that match
     matched_order = session.query(Order).filter(Order.filled==None,\
                                        Order.buy_currency == order_obj.sell_currency,\
@@ -46,7 +47,7 @@ def process_order(order):
                                   sell_amount= matched_order.buy_amount * order_obj.buy_amount / order_obj.sell_amount,\
                                   created_by = matched_order.id)       
     
-    session.add(order_obj)
+   
     session.add(new_order)
     session.commit()
     pass
