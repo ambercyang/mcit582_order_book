@@ -39,6 +39,7 @@ def process_order(order):
                                   buy_amount=order_obj['buy_amount']-matched_order['sell_amount'], \
                                   sell_amount= order_obj.buy_amount * matched_order.buy_amount / matched_order.sell_amount,\
                                   creator_id = order_obj.id)
+                print("partially filled, new_order.buy_amount > matched_order.sell amount, creator_id =", new_order.creator_id)
                 session.add(new_order)
                 session.commit()
 
@@ -54,6 +55,8 @@ def process_order(order):
                                   buy_amount=matched_order['buy_amount'] - order_obj['sell_amount'], \
                                   sell_amount= matched_order.buy_amount * order_obj.buy_amount / order_obj.sell_amount,\
                                   creator_id = matched_order.id)
+                print("partially filled, matched_order.buy_amount>new_order.sell_amount, creator_id =", new_order.creator_id)
+                
                 session.add(new_order)
                 session.commit()
                 #matched_order.child = new_order.id
