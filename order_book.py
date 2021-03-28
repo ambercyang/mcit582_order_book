@@ -53,5 +53,5 @@ def process_order(order):
                 #matched_order.child.append(new_order.id)
 
         #process_order(new_order)
-        session.commit()
+    session.commit()
     pass
