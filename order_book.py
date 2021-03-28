@@ -39,7 +39,8 @@ def process_order(order):
                                   buy_amount=order_obj['buy_amount']-matched_order['sell_amount'], \
                                   sell_amount= order_obj.buy_amount * matched_order.buy_amount / matched_order.sell_amount,\
                                   created_by = order_obj.id)
-                order_obj.child = new_order.id
+                #order_obj.child = new_order.id
+                order_obj.child.append(new_order.id)
 
                     
         if matched_order.buy_amount > order_obj.sell_amount:
