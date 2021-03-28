@@ -33,7 +33,7 @@ def process_order(order):
     #(existing_order.sell_amount / existing_order.buy_amount >= order.buy_amount/order.sell_amount)
     # => order.sell_amount = order.buy_amount * existing_order.buy_amount / existing_order.sell_amount
             
-        if order_obj.buy_amount >= matched_order.sell_amount:
+        if order_obj.buy_amount > matched_order.sell_amount:
                 new_order = Order(sender_pk=order_obj['sender_pk'],receiver_pk=order_obj['receiver_pk'], \
                                   buy_currency=order_obj['buy_currency'], sell_currency=order_obj['sell_currency'], \
                                   buy_amount=order_obj['buy_amount']-matched_order['sell_amount'], \
