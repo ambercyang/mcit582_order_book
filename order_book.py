@@ -39,6 +39,9 @@ def process_order(order):
                                   buy_amount=order_obj['buy_amount']-matched_order['sell_amount'], \
                                   sell_amount= order_obj.buy_amount * matched_order.buy_amount / matched_order.sell_amount,\
                                   creator_id = order_obj.id)
+                session.add(new_order)
+                        
+
                 #order_obj.child = new_order.id
                 #order_obj.child.append(new_order.id)
 
@@ -49,11 +52,10 @@ def process_order(order):
                                   buy_amount=matched_order['buy_amount'] - order_obj['sell_amount'], \
                                   sell_amount= matched_order.buy_amount * order_obj.buy_amount / order_obj.sell_amount,\
                                   creator_id = matched_order.id)
+                session.add(new_order)
                 #matched_order.child = new_order.id
                 #matched_order.child.append(new_order.id)
                 
-                
-        session.add(new_order)
-        #process_order(new_order)
+                #process_order(new_order)
     session.commit()
     pass
