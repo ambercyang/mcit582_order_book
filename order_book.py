@@ -49,8 +49,9 @@ def process_order(order):
                                   buy_amount=matched_order['buy_amount'] - order_obj['sell_amount'], \
                                   sell_amount= matched_order.buy_amount * order_obj.buy_amount / order_obj.sell_amount,\
                                   created_by = matched_order.id)
-                matched_order.child = new_order.id
+                #matched_order.child = new_order.id
+                matched_order.child.append(new_order.id)
 
-        process_order(new_order)
+        #process_order(new_order)
         session.commit()
     pass
